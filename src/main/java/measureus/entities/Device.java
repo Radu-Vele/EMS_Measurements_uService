@@ -1,10 +1,7 @@
 package measureus.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -13,16 +10,12 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Device {
     @Id
-    @GeneratedValue(strategy= GenerationType.UUID)
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
-    private String description;
-
-    private String address;
-
     @Column(nullable = false)
-    private Long maxHourlyEnergyConsumption;
+    private Double maxHourlyEnergyConsumption;
 }
