@@ -1,7 +1,7 @@
 package measureus.services;
+import measureus.entities.Measurement;
 import lombok.RequiredArgsConstructor;
 import measureus.dtos.MeasurementMessageDto;
-import measureus.entities.Measurement;
 import measureus.repositories.MeasurementRepository;
 import org.springframework.stereotype.Service;
 
