@@ -17,7 +17,11 @@ public class Measurement {
     @Column(columnDefinition = "BINARY(16)")
     private UUID id;
 
+    private UUID deviceId;
+
     private Long timestamp;
 
     private Double measuredValue;
+
+    private Double pastHourConsumption = 0.0;
 }

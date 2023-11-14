@@ -25,7 +25,7 @@ public class MeasurementListener {
             MeasurementMessageDto measurementMessageDto = objectMapper.readValue(measurementEntry, MeasurementMessageDto.class);
             measurementService.processNewMeasurement(measurementMessageDto);
         } catch (JsonProcessingException e) {
-            channel.basicNack(tag, false, false);
+            channel.basicNack(tag, false, false); //TODO: this does not work ok (exception occurs when NACK is sent)
         }
     }
 }
