@@ -18,4 +18,6 @@ public class Device {
 
     @Column(nullable = false)
     private Double maxHourlyEnergyConsumption;
+
+    private UUID ownerId;
 }

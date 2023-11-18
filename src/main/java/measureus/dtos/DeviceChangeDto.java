@@ -13,4 +13,6 @@ public class DeviceChangeDto {
     private String deviceId;
     @JsonProperty("maxHourlyConsumption")
     private Double maxHourlyConsumption;
+    @JsonProperty("ownerId")
+    private String ownerId;
 }

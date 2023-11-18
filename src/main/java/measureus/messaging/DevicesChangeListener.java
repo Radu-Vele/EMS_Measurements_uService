@@ -1,11 +1,10 @@
-package measureus.listeners;
+package measureus.messaging;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import lombok.RequiredArgsConstructor;
 import measureus.dtos.DeviceChangeDto;
-import measureus.dtos.MeasurementMessageDto;
 import measureus.services.DeviceService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;

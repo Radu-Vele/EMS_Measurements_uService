@@ -17,9 +17,18 @@ public class DeviceService {
             this.deviceRepository.deleteById(UUID.fromString(deviceChangeDto.getDeviceId()));
             return;
         }
-        this.deviceRepository.save(Device.builder()
+        Device changedDevice = Device.builder()
                 .id(UUID.fromString(deviceChangeDto.getDeviceId()))
                 .maxHourlyEnergyConsumption(deviceChangeDto.getMaxHourlyConsumption())
-                .build());
+                .build();
+
+        if (deviceChangeDto.getOwnerId() != null) {
+            changedDevice.setOwnerId(UUID.fromString(deviceChangeDto.getOwnerId()));
+        }
+        else {
+            changedDevice.setOwnerId(null);
+        }
+
+        this.deviceRepository.save(changedDevice);
     }
 }
