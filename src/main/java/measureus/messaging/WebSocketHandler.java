@@ -17,20 +17,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("Connection established;" + session.toString());
-        String userId = Objects.requireNonNull(session
-                        .getHandshakeHeaders()
-                        .get("userId"))
-                .get(0);
+        String userId = Objects.requireNonNull(session.getUri()).getQuery().split("=")[1];
+        System.out.println(userId);
         userIdSessionMap.put(userId, session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("Connection closed" + session.toString() + status.toString());
-        String userId = Objects.requireNonNull(session
-                        .getHandshakeHeaders()
-                        .get("userId"))
-                .get(0);
+        String userId = Objects.requireNonNull(session.getUri()).getQuery().split("=")[1];
         userIdSessionMap.remove(userId);
     }
 

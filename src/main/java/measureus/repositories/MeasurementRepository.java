@@ -14,4 +14,11 @@ public interface MeasurementRepository extends JpaRepository<Measurement, UUID> 
     Optional<Double> getConsumptionInPastHour(@Param("deviceId") UUID deviceId,
                                               @Param("from") long from,
                                               @Param("to") long to);
+
+    @Query("SELECT SUM(m.measuredValue) FROM Measurement m JOIN Device d " +
+            "ON m.deviceId = d.id " +
+            "WHERE d.ownerId = :userUuid AND (m.timestamp BETWEEN :from AND :to)")
+    Optional<Double> getUserConsumptionBetween(@Param("userUuid") UUID userUuid,
+                                   @Param("from") long from,
+                                   @Param("to")long to);
 }

@@ -1,4 +1,5 @@
 package measureus.services;
+import measureus.dtos.HourlyConsumptionDto;
 import measureus.entities.Device;
 import measureus.entities.Measurement;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +10,7 @@ import measureus.repositories.MeasurementRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -56,5 +55,26 @@ public class MeasurementService {
         }
 
         this.measurementRepository.save(newMeasurement);
+    }
+
+    public List<HourlyConsumptionDto> getHourlyConsumption(long dayTimestamp, String userId) {
+        UUID userUuid = UUID.fromString(userId);
+        long HOUR_IN_MILLIS = 3600000;
+        long DAY_IN_MILLIS = 86400000;
+        List<HourlyConsumptionDto> hourlyConsumptionDtoList = new ArrayList<>();
+        long from = dayTimestamp;
+        long to = from + HOUR_IN_MILLIS;
+        for(int i = 0; i < 24; i++) {
+            // get hour consumption
+            double consumption = this.measurementRepository.getUserConsumptionBetween(userUuid, from, to)
+                    .orElse(0.0);
+            hourlyConsumptionDtoList.add(HourlyConsumptionDto.builder()
+                    .hour(i)
+                    .value(consumption)
+                    .build());
+            from = to;
+            to += HOUR_IN_MILLIS;
+        }
+        return hourlyConsumptionDtoList;
     }
 }
