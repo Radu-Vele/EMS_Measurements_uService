@@ -39,4 +39,4 @@ spring.rabbitmq.ssl.enabled=true
 spring.rabbitmq.username=${RABBITMQ_USER:your_rabbitmq_username}
 spring.rabbitmq.password=${RABBITMQ_PASS:your_rabbitmq_pass}
 spring.rabbitmq.measurements_queue=${RABBITMQ_MEASUREMENTS_QUEUE:devices_energy_consumption}
-spring.rabbitmq.devices_change_queue=${RABBITMQ_MEASUREMENTS_QUEUE:devices_change_queue}
+spring.rabbitmq.devices_change_queue=${RABBITMQ_DEVICES_CHANGE_QUEUE:devices_change_queue}
