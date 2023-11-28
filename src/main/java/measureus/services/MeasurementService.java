@@ -51,7 +51,7 @@ public class MeasurementService {
                                 correspondingDevice.getId(),
                                 correspondingDevice.getMaxHourlyEnergyConsumption(),
                                 pastHourConsumption));
-            }
+            } // TODO: should the websocket message block our transaction? Nope, fix it.
         }
 
         this.measurementRepository.save(newMeasurement);
