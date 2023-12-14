@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Getter
 public class WebSocketHandler extends TextWebSocketHandler {
     private final Map<String, WebSocketSession> userIdSessionMap = new ConcurrentHashMap<>();
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("Connection established;" + session.toString());
